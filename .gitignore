@@ -1,3 +1,11 @@
+# Mac OSX
+###########
+.DS_Store*
+.DS_Store
+.Spotlight-V100
+.Trashes
+._*
+
 # Logs
 logs
 *.log
@@ -13,6 +21,8 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
+.env
+test.js
 
 # nyc test coverage
 .nyc_output
