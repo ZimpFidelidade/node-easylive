@@ -23,6 +23,7 @@ lib-cov
 coverage
 .env
 test.js
+live-test.js
 
 # nyc test coverage
 .nyc_output
