@@ -1,0 +1,53 @@
+{
+  "name": "easylive",
+  "version": "1.0.0",
+  "description": "A library for Easylive API",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "eslint": "eslint **/**.js --ignore-path .npmignore --quiet",
+    "david": "david",
+    "lab": "lab --verbose --colors --assert code -e development",
+    "test-cov": "npm run lab -- -t 93 -r console -o stdout -r html -o coverage/coverage.html -r lcov -o coverage/lcov.info",
+    "test": "npm run eslint && npm run david && npm run test-cov",
+    "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
+    "preversion": "git pull && rm -rf ./node_modules/ && npm install && npm test",
+    "postversion": "git push && npm publish --access=public && git push --tags"
+  },
+  "pre-commit": [
+    "precommit-msg",
+    "test"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZimpFidelidade/node-easylive.git"
+  },
+  "keywords": [
+    "easylive",
+    "api",
+    "lib",
+    "b2b"
+  ],
+  "author": "Luan Muniz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ZimpFidelidade/node-easylive/issues"
+  },
+  "homepage": "https://github.com/ZimpFidelidade/node-easylive",
+  "devDependencies": {
+    "code": "4.0.0",
+    "coveralls": "2.11.16",
+    "david": "10.1.0",
+    "dotenv": "4.0.0",
+    "eslint": "3.15.0",
+    "lab": "12.1.0",
+    "pre-commit": "1.2.2"
+  },
+  "dependencies": {
+    "@luanmuniz/password-generator": "1.0.3",
+    "got": "6.7.1",
+    "joi": "10.2.2"
+  }
+}
