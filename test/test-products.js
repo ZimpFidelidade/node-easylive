@@ -121,20 +121,78 @@ lab.describe('products', { timeout: 0 }, () => {
 			});
 	});
 
-	lab.test('getProduct', (done) => {
-		libInit.getProduct(2562)
-			.then((thisProduct) => {
-				productValidation(thisProduct);
-				done();
-			});
+	lab.describe('getProduct', { timeout: 0 }, () => {
+
+		lab.test('Should validate the products', (done) => {
+			libInit.getProduct(2562)
+				.then((thisProduct) => {
+					productValidation(thisProduct);
+					done();
+				});
+		});
+
+		lab.test('Should throw error asking an product id', (done) => {
+			libInit.getProduct()
+				.catch((productError) => {
+					expect(productError).to.be.an.object();
+					expect(productError.success).to.be.equal(false);
+					expect(productError.code).to.be.equal('missingProductId');
+					expect(productError.message).to.be.equal('You need to send the product ID');
+
+					done();
+				});
+		});
+
+		lab.test('Should throw error because of an invalid product', (done) => {
+			libInit.getProduct(123)
+				.catch((productError) => {
+					expect(productError).to.be.an.object();
+					expect(productError.success).to.be.equal(false);
+					expect(productError.code).to.be.equal('single-404');
+					expect(productError.message).to.be.equal('This product doesn\'t exist');
+					expect(productError.errorResponse).to.be.an.error();
+
+					done();
+				});
+		});
+
 	});
 
-	lab.test('getSku', (done) => {
-		libInit.getSku(2768)
-			.then((thisSku) => {
-				skuValidation(thisSku);
-				done();
-			});
+	lab.describe('getSku', { timeout: 0 }, () => {
+
+		lab.test('Should validate the sku', (done) => {
+			libInit.getSku(2768)
+				.then((thisSku) => {
+					skuValidation(thisSku);
+					done();
+				});
+		});
+
+		lab.test('Should throw error asking an SKU', (done) => {
+			libInit.getSku()
+				.catch((skuError) => {
+					expect(skuError).to.be.an.object();
+					expect(skuError.success).to.be.equal(false);
+					expect(skuError.code).to.be.equal('missingSkuId');
+					expect(skuError.message).to.be.equal('You need to send the sku ID');
+
+					done();
+				});
+		});
+
+		lab.test('Should throw error because of an invalida SKU', (done) => {
+			libInit.getSku(123)
+				.catch((skuError) => {
+					expect(skuError).to.be.an.object();
+					expect(skuError.success).to.be.equal(false);
+					expect(skuError.code).to.be.equal('sku-404');
+					expect(skuError.message).to.be.equal('This sku doesn\'t exist');
+					expect(skuError.errorResponse).to.be.an.error();
+
+					done();
+				});
+		});
+
 	});
 
 	lab.test('getMostSold', (done) => {
