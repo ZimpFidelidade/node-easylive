@@ -15,8 +15,8 @@ lab.describe('init', () => {
 
 	lab.test('Should validate data', (done) => {
 		let libInit = lib.init({
-			user: "12345",
-			password: "u5w9XbRSKa3aGSoIJ0wpu5w9XbRSKa3aGSoIJ0wpu5w9XbRSKa3aGSoIJ0wpKTS3",
+			user: '12345',
+			password: 'u5w9XbRSKa3aGSoIJ0wpu5w9XbRSKa3aGSoIJ0wpu5w9XbRSKa3aGSoIJ0wpKTS3',
 			basePath: 'zimp'
 		});
 
@@ -28,14 +28,14 @@ lab.describe('init', () => {
 
 	lab.test('Should validate data with another env', (done) => {
 		let libInit = lib.init({
-			user: "12345",
-			password: "u5w9XbRSKa3aGSoIJ0wpu5w9XbRSKa3aGSoIJ0wpu5w9XbRSKa3aGSoIJ0wpKTS3",
+			user: '12345',
+			password: 'u5w9XbRSKa3aGSoIJ0wpu5w9XbRSKa3aGSoIJ0wpu5w9XbRSKa3aGSoIJ0wpKTS3',
 			basePath: 'zimp'
 		}, 'production');
 
 		expect(libInit).to.be.an.object();
 		expect(libInit.env).to.be.equal('production');
-		expect(libInit.rootUrl).to.be.equal('https://easylive.totalcommit.com/zimp');
+		expect(libInit.rootUrl).to.be.equal('https://easylive.com.br/zimp');
 		done();
 	});
 });
